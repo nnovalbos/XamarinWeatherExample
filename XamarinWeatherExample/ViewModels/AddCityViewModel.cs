@@ -11,10 +11,17 @@ namespace XamarinWeatherExample.ViewModels
 {
     public class AddCityViewModel : BaseViewModel
     {
+        private IWeatherService _weatherService;
+        private IDialogService _dialogService;
         private string _cityName;
 
-        public AddCityViewModel(INavigationService navigationService) : base(navigationService)
+        public AddCityViewModel(INavigationService navigationService, IWeatherService weatherService,
+            IDialogService dialogService) : base(navigationService)
         {
+            
+            _weatherService = weatherService;
+            _dialogService = dialogService;
+
             _cityName = string.Empty;
 
             AddCommand = new Command(async (obj) => await OnAdd(), HasDataChange);
@@ -61,12 +68,23 @@ namespace XamarinWeatherExample.ViewModels
 
         private async Task OnAdd()
         {
-            //TODO: realizamos petición para ver si existe la ciudad
-            IsBusy = true;
-            await Task.Delay(2000);
+
+            try
+            {
+                IsBusy = true;
+                var cityWithValues = await _weatherService.GetCityWeatherByName(CityName);
+
+                Listener?.CityAdded(cityWithValues);
+                await navigationService.CloseModalView();
+
+            }
+            catch(Exception e)
+            {
+                await _dialogService.ShowDialog("Error", e.Message, "OK");
+            }
+
             IsBusy = false;
-            Listener?.CityAdded(new City { CityName = CityName, CurrentTemperature = "20"});
-            await navigationService.CloseModalView();
+
         }
     }
 }

@@ -5,17 +5,19 @@
     x:Class="XamarinWeatherExample.Views.Templates.CityListItemTemplateView">
 
     <ContentView.Content>
-         <StackLayout Orientation="Horizontal" Margin="5" HorizontalOptions="FillAndExpand" HeightRequest="40" >
+        <Frame CornerRadius="5" HorizontalOptions="FillAndExpand" HasShadow="True" Margin="5">
+            <StackLayout Orientation="Horizontal" Margin="5" HorizontalOptions="FillAndExpand" HeightRequest="40" >
             <Label Text="{Binding CityName}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" 
              TextColor="#00A6FF" HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
-
-             <ImageButton Source="{Binding CityWeatherIcon}" WidthRequest="24" HeightRequest="24" HorizontalOptions="End"/>
-             <Label Text="{Binding CurrentTemperature}" HorizontalOptions="End"  HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
+             <Image Source="{Binding CityWeatherIcon, StringFormat='http://openweathermap.org/img/wn/{0}@2x.png'}"/>
+             <Label Text="{Binding CurrentTemperature, Converter={StaticResource FahranheitToCelsiusConverter}}" HorizontalOptions="End"  HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
 
              <StackLayout.GestureRecognizers>
                  <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ShowCityDetailCommand}"/>
              </StackLayout.GestureRecognizers>
 
          </StackLayout>
+        </Frame>
+         
     </ContentView.Content>
 </ContentView>

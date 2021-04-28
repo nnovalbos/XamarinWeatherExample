@@ -23,7 +23,8 @@ namespace XamarinWeatherExample.Common
 
 
             builder.RegisterType<NavigationService>().As<INavigationService>();
-
+            builder.RegisterType<DialogService>().As<IDialogService>();
+            builder.RegisterType<WeatherService>().As<IWeatherService>();
             builder.RegisterType<WeatherApiRepository>().As<IGenericRepository>();
 
             _container = builder.Build();

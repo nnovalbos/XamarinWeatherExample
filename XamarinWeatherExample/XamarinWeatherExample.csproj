@@ -14,6 +14,8 @@
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
     <PackageReference Include="Autofac" Version="6.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Acr.UserDialogs" Version="7.1.0.483" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />
@@ -30,5 +32,6 @@
     <Folder Include="Models\" />
     <Folder Include="ViewModels\Templates\" />
     <Folder Include="Views\Templates\" />
+    <Folder Include="Models\ApiResponses\" />
   </ItemGroup>
 </Project>

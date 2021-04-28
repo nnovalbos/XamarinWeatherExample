@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -19,9 +20,9 @@ namespace XamarinWeatherExample.ViewModels.Templates
 
         public string CityName => _city.CityName;
 
-        public string CityWeatherIcon => "icon";
+        public string CityWeatherIcon => _city.Weather.Any() ? _city.Weather[0].Icon : string.Empty;
 
-        public string CurrentTemperature => _city.CurrentTemperature;
+        public double CurrentTemperature => _city.Temperature.CurrentTemperature;
 
         public ICommand ShowCityDetailCommand => new Command(async () => await OnShowCityDetailCommand());
 
@@ -35,6 +36,7 @@ namespace XamarinWeatherExample.ViewModels.Templates
         private void DrawCell()
         {
             OnPropertyChanged(nameof(CityName));
+            OnPropertyChanged(nameof(CityWeatherIcon));
         }
 
         private async Task OnShowCityDetailCommand()

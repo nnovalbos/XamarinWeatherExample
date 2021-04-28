@@ -4,9 +4,21 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:utility="clr-namespace:XamarinWeatherExample.Common"
     utility:ViewModelLocator.AutoWireViewModel="True"
-    Title="{Binding Title}"
     x:Class="XamarinWeatherExample.Views.CityDetailView">
     <ContentPage.Content>
-        
+
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="0">
+             <Label Text="{Binding Title}" FontSize="Title" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
+             <Label Text="{Binding Description}" FontSize="Subtitle" FontAttributes="Bold" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
+             <Label Text="{Binding TemperatureValues.CurrentTemperature, Converter={StaticResource FahranheitToCelsiusConverter}}"
+                    FontSize="96" FontAttributes="Bold" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
+            <StackLayout Orientation="Horizontal" BindingContext="{Binding TemperatureValues}" HorizontalOptions="Center">
+                 <Label Text="{Binding MaxTemperature, Converter={StaticResource FahranheitToCelsiusConverter}, StringFormat='Max {0}'}"
+                       HorizontalOptions="Center"  HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
+
+                 <Label Text="{Binding MinTemperature, Converter={StaticResource FahranheitToCelsiusConverter}, StringFormat='Min {0}'}"
+                       HorizontalOptions="Start"  HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
+            </StackLayout>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
