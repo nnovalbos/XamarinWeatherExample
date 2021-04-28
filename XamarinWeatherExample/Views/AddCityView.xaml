@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:utility="clr-namespace:XamarinWeatherExample.Common"
+    utility:ViewModelLocator.AutoWireViewModel="True"
+    x:Class="XamarinWeatherExample.Views.AddCityView">
+
+    <ContentPage.Content>
+        
+        <Frame Grid.Row="0"
+                   Margin="25,190"
+                   Padding="0"
+                   CornerRadius="15">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="4*"/>
+                </Grid.RowDefinitions>
+
+                <StackLayout Grid.Row="0"
+                        Orientation="Horizontal"
+                        HorizontalOptions="FillAndExpand"
+                        Margin="10">
+
+                    <Button Text="Cancel" HorizontalOptions="Start" BackgroundColor="Transparent" Command="{Binding CancelCommand}"/>
+                    <Label Text="Add City" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
+                    <Button Text="Add" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" Command="{Binding AddCommand}"/>
+                </StackLayout>
+
+                <BoxView Grid.Row="1"
+                    HeightRequest="1"
+                    Color="Gray"
+                    HorizontalOptions="FillAndExpand"/>
+
+                <Entry Grid.Row="2"
+                        VerticalOptions="Center"
+                        HorizontalOptions="FillAndExpand"
+                        Placeholder="Add City Name"
+                        Text="{Binding CityName}"
+                        Margin="5"/>
+
+                <ActivityIndicator Grid.Row="2"
+                                   IsRunning="{Binding IsBusy}"
+                                   HeightRequest="36" WidthRequest="36"
+                                   HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
+                                   Color ="Blue"/>
+
+            </Grid>
+
+        </Frame>
+       
+
+    </ContentPage.Content>
+</ContentPage>

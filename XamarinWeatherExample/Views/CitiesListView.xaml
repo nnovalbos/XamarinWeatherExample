@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="GoodWeather"
+    xmlns:utility="clr-namespace:XamarinWeatherExample.Common"
+    xmlns:templates="clr-namespace:XamarinWeatherExample.Views.Templates"
+    xmlns:vm="clr-namespace:XamarinWeatherExample.ViewModels"
+    utility:ViewModelLocator.AutoWireViewModel="True"
+    x:Class="XamarinWeatherExample.Views.CitiesListView">
+
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Command="{Binding AddCommand}"/>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+
+          <CollectionView VerticalOptions="FillAndExpand"
+                      SelectionMode="Single"
+                      Margin="0"
+                      ItemsSource="{Binding Cities}"
+                      HorizontalOptions="FillAndExpand">
+
+              <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                       <templates:CityListItemTemplateView/>
+                     </DataTemplate>
+              </CollectionView.ItemTemplate>
+
+    
+              <CollectionView.EmptyView>
+                        <Label Text="No cities added! :("
+                            TextColor="#00A6FF" 
+                            HorizontalTextAlignment="Center" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                    </CollectionView.EmptyView>
+
+              </CollectionView>
+
+        
+    </ContentPage.Content>
+</ContentPage>
