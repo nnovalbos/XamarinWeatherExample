@@ -4,17 +4,17 @@ using Xamarin.Forms;
 
 namespace XamarinWeatherExample.Converters
 {
-    public class FahranheitToCelsiusValueConverter : IValueConverter
+    public class KelvinToCelsiusValueConverter : IValueConverter
     {
-        public FahranheitToCelsiusValueConverter()
+        public KelvinToCelsiusValueConverter()
         {
         }
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is double fahranheitValue && fahranheitValue!=Double.MinValue)
+            if (value is double kelvinValue && kelvinValue != Double.MinValue)
             {
-                return $"{(int)(fahranheitValue - 273.15)} ºC";
+                return $"{(int)(kelvinValue - 273.15)} ºC";
             }
 
             return string.Empty;

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using XamarinWeatherExample.Contracts.Services;
 using XamarinWeatherExample.Models;
@@ -17,8 +16,8 @@ namespace XamarinWeatherExample.ViewModels
             IsBusy = true;
         }
 
+        #region Properties
         public string Title => _city.CityName;
-
 
         public string Description => _city.Weather.Any() ? _city.Weather[0].Description : string.Empty;
 
@@ -28,6 +27,7 @@ namespace XamarinWeatherExample.ViewModels
         {
             get => _city.Temperature;
         }
+        #endregion
 
         public override Task InitializeAsync(object parameter)
         {

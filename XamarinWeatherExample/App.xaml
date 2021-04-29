@@ -5,6 +5,6 @@
              x:Class="XamarinWeatherExample.App">
     <Application.Resources>
         <converters:BooleanInverterValueConverter x:Key="BooleanInverterConverter"/>
-        <converters:FahranheitToCelsiusValueConverter x:Key="FahranheitToCelsiusConverter"/>
+        <converters:KelvinToCelsiusValueConverter x:Key="KelvinToCelsiusConverter"/>
     </Application.Resources>
 </Application>

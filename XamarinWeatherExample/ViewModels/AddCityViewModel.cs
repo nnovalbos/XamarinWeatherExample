@@ -4,16 +4,17 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using XamarinWeatherExample.Contracts.Listeners;
 using XamarinWeatherExample.Contracts.Services;
-using XamarinWeatherExample.Models;
 using XamarinWeatherExample.ViewModels.Base;
 
 namespace XamarinWeatherExample.ViewModels
 {
     public class AddCityViewModel : BaseViewModel
     {
+        #region Attributes
         private IWeatherService _weatherService;
         private IDialogService _dialogService;
         private string _cityName;
+        #endregion
 
         public AddCityViewModel(INavigationService navigationService, IWeatherService weatherService,
             IDialogService dialogService) : base(navigationService)
@@ -27,6 +28,7 @@ namespace XamarinWeatherExample.ViewModels
             AddCommand = new Command(async (obj) => await OnAdd(), HasDataChange);
         }
 
+        #region Properties
         public string CityName
         {
             get => _cityName;
@@ -49,18 +51,24 @@ namespace XamarinWeatherExample.ViewModels
         }
 
         public ICityAddedListener Listener {get; set;}
+        #endregion
 
+        #region Commands
         public Command AddCommand { get; private set; }
 
         public ICommand CancelCommand => new Command(async () => await OnCancel());
+        #endregion
 
+        #region Public Methods
         public override Task InitializeAsync(object parameter)
         {
             Listener = parameter as ICityAddedListener;
 
             return base.InitializeAsync(parameter);
         }
+        #endregion
 
+        #region Private Methods
         private async Task OnCancel()
         {
             await navigationService.CloseModalView();
@@ -96,5 +104,6 @@ namespace XamarinWeatherExample.ViewModels
             IsBusy = false;
 
         }
+        #endregion
     }
 }

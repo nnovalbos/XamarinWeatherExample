@@ -5,12 +5,12 @@ namespace XamarinWeatherExample.Models.ApiResponses
     public class TemperatureResponse
     {
         [JsonProperty("temp")]
-        public double CurrentTemperature { get; set; } = 20.0;
+        public double CurrentTemperature { get; set; } = double.MinValue;
 
         [JsonProperty("temp_max")]
-        public double MaxTemperature { get; set; } = 20.0;
+        public double MaxTemperature { get; set; } = double.MinValue;
 
         [JsonProperty("temp_min")]
-        public double MinTemperature { get; set; } = 20.0;
+        public double MinTemperature { get; set; } = double.MinValue;
     }
 }

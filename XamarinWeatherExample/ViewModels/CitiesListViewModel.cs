@@ -42,7 +42,6 @@ namespace XamarinWeatherExample.ViewModels
 
         #endregion
 
-        //  public ICommand AddCommand => new Command(async() => await AddCity());
 
         public Command AddCommand { get; private set; }
 
@@ -73,6 +72,5 @@ namespace XamarinWeatherExample.ViewModels
             await navigationService.NavigateToAsync<AddCityViewModel>(this);
         }
         #endregion
-
     }
 }

@@ -21,16 +21,16 @@
 
                 <Image Source="{Binding CityWeatherIcon, StringFormat='http://openweathermap.org/img/wn/{0}@2x.png'}"/>
 
-                <Label Text="{Binding TemperatureValues.CurrentTemperature, Converter={StaticResource FahranheitToCelsiusConverter}}"
+                <Label Text="{Binding TemperatureValues.CurrentTemperature, Converter={StaticResource KelvinToCelsiusConverter}}"
                      HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"
                        FontSize="96" FontAttributes="Bold"/>
 
                 <StackLayout Orientation="Horizontal" BindingContext="{Binding TemperatureValues}" HorizontalOptions="Center">
 
-                    <Label Text="{Binding MaxTemperature, Converter={StaticResource FahranheitToCelsiusConverter}, StringFormat='Max {0}'}"
+                    <Label Text="{Binding MaxTemperature, Converter={StaticResource KelvinToCelsiusConverter}, StringFormat='Max {0}'}"
                        HorizontalOptions="Center"  HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
 
-                    <Label Text="{Binding MinTemperature, Converter={StaticResource FahranheitToCelsiusConverter}, StringFormat='Min {0}'}"
+                    <Label Text="{Binding MinTemperature, Converter={StaticResource KelvinToCelsiusConverter}, StringFormat='Min {0}'}"
                        HorizontalOptions="Start"  HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
 
                 </StackLayout>

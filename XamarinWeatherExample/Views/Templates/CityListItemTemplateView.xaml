@@ -10,7 +10,7 @@
             <Label Text="{Binding CityName}" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" 
              TextColor="#00A6FF" HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
              <Image Source="{Binding CityWeatherIcon, StringFormat='http://openweathermap.org/img/wn/{0}@2x.png'}"/>
-             <Label Text="{Binding CurrentTemperature, Converter={StaticResource FahranheitToCelsiusConverter}}" HorizontalOptions="End"  HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
+             <Label Text="{Binding CurrentTemperature, Converter={StaticResource KelvinToCelsiusConverter}}" HorizontalOptions="End"  HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
 
              <StackLayout.GestureRecognizers>
                  <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ShowCityDetailCommand}"/>

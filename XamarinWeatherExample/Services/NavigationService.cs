@@ -19,10 +19,8 @@ namespace XamarinWeatherExample.Services
             CreateMappings();
         }
 
-
         public async Task InitializeAsync()
         {
-            // await Task.Delay(3000);
             Application.Current.MainPage = new Page();
             await NavigateToAsync<CitiesListViewModel>();
         }
@@ -44,10 +42,8 @@ namespace XamarinWeatherExample.Services
 
         private async Task CustomNavigateToAsync(Type viewModelType, object parameter)
         {
-
             var page = CreatePage(viewModelType, parameter);
 
-  
             if (page is CitiesListView)
             {
                 var nv = new NavigationPage(page);
@@ -63,7 +59,6 @@ namespace XamarinWeatherExample.Services
                 await Application.Current.MainPage.Navigation.PushAsync(page);
             }
          
-
             await (page.BindingContext as BaseViewModel).InitializeAsync(parameter);
         }
 
@@ -75,7 +70,6 @@ namespace XamarinWeatherExample.Services
             Page page = Activator.CreateInstance(pageType) as Page;
             return page;
         }
-
 
         private void CreateMappings()
         {

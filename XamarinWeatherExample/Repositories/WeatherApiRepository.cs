@@ -14,34 +14,18 @@ namespace XamarinWeatherExample.Repositories
         {
         }
 
-        public async Task<T> GetAsync<T>(string uri, string authToken = "")
+        public async Task<T> GetAsync<T>(string uri)
         {
             try
             {
-                HttpClient httpClient = CreateHttpClient(uri);
+                HttpClient httpClient = CreateHttpClient();
                 string jsonResult = string.Empty;
                 var responseMessage = await httpClient.GetAsync(uri);
-                /*
-                var responseMessage = await Policy
-                    .Handle<WebException>(ex =>
-                    {
-                        Debug.WriteLine($"{ex.GetType().Name + " : " + ex.Message}");
-                        return true;
-                    })
-                    .WaitAndRetryAsync
-                    (
-                        5,
-                        retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt))
-                    )
-                    .ExecuteAsync(async () => await httpClient.GetAsync(uri));
-                */
-
+                
                 if (responseMessage.IsSuccessStatusCode)
                 {
-                    jsonResult =
-                        await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
-                    var json = JsonConvert.DeserializeObject<T>(jsonResult);
-                    return json;
+                    jsonResult = await responseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+                    return JsonConvert.DeserializeObject<T>(jsonResult);
                 }
 
                 if (responseMessage.StatusCode == HttpStatusCode.Forbidden ||
@@ -51,26 +35,19 @@ namespace XamarinWeatherExample.Repositories
                 }
 
                 throw new Exception($"{responseMessage.StatusCode}");
-                //throw new Exception(responseMessage.StatusCode, jsonResult);
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }
         }
 
-        private HttpClient CreateHttpClient(string authToken)
+        private HttpClient CreateHttpClient()
         {
             var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-            if (!string.IsNullOrEmpty(authToken))
-            {
-                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", authToken);
-            }
             return httpClient;
         }
-
     }
 }
