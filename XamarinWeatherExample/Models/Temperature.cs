@@ -5,11 +5,11 @@ namespace XamarinWeatherExample.Models
 {
     public class Temperature
     {
-        public double CurrentTemperature { get; set; } = 20.0;
+        public double CurrentTemperature { get; set; } = Double.MinValue;
 
-        public double MaxTemperature { get; set; } = 20.0;
+        public double MaxTemperature { get; set; } = Double.MinValue;
 
-        public double MinTemperature { get; set; } = 20.0;
+        public double MinTemperature { get; set; } = Double.MinValue;
 
         public static Temperature CreateFromResponse(TemperatureResponse response)
         {

@@ -1,57 +1,56 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentPage
+<pages:PopupPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:utility="clr-namespace:XamarinWeatherExample.Common"
     utility:ViewModelLocator.AutoWireViewModel="True"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
     x:Class="XamarinWeatherExample.Views.AddCityView">
 
     <ContentPage.Content>
-        
-        <Frame Grid.Row="0"
-                   Margin="25,190"
-                   Padding="0"
-                   CornerRadius="15">
+
+        <Frame Margin="0,150,0,-500" Padding="0" CornerRadius="15">
 
             <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="4*"/>
-                </Grid.RowDefinitions>
+                <StackLayout HorizontalOptions="FillAndExpand" Spacing="0">
 
-                <StackLayout Grid.Row="0"
-                        Orientation="Horizontal"
+                    <Label Text="Add City"
+                        HorizontalOptions="CenterAndExpand"
+                        Margin="25"
+                        HorizontalTextAlignment="Center"
+                        FontSize="Title"
+                        FontAttributes="Bold"/>
+
+                    <Entry VerticalOptions="Start"
                         HorizontalOptions="FillAndExpand"
-                        Margin="10">
-
-                    <Button Text="Cancel" HorizontalOptions="Start" BackgroundColor="Transparent" Command="{Binding CancelCommand}"/>
-                    <Label Text="Add City" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
-                    <Button Text="Add" HorizontalOptions="EndAndExpand" BackgroundColor="Transparent" Command="{Binding AddCommand}"/>
-                </StackLayout>
-
-                <BoxView Grid.Row="1"
-                    HeightRequest="1"
-                    Color="Gray"
-                    HorizontalOptions="FillAndExpand"/>
-
-                <Entry Grid.Row="2"
-                        VerticalOptions="Center"
-                        HorizontalOptions="FillAndExpand"
-                        Placeholder="Add City Name"
+                        Placeholder="City Name"
                         Text="{Binding CityName}"
-                        Margin="5"/>
+                        Margin="25,0,25,0"/>
 
-                <ActivityIndicator Grid.Row="2"
-                                   IsRunning="{Binding IsBusy}"
-                                   HeightRequest="36" WidthRequest="36"
-                                   HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
-                                   Color ="Blue"/>
+                    <Button Text="Create"
+                         HorizontalOptions="EndAndExpand"
+                         BackgroundColor="Transparent"
+                         Margin="0,-10,25,0"
+                         Command="{Binding AddCommand}"/>
+
+                    <ActivityIndicator  IsRunning="{Binding IsBusy}"
+                          HeightRequest="36" WidthRequest="36"
+                          HorizontalOptions="CenterAndExpand" VerticalOptions="Start"
+                          Color ="#00A6FF"/>
+
+                    <Label
+                          VerticalOptions="Center"
+                          HorizontalOptions="CenterAndExpand"
+                          Margin="-25"
+                          Text="Press out for exit"
+                          TextColor="Gray"
+                          FontAttributes="Italic"/>
+
+                </StackLayout>
 
             </Grid>
 
         </Frame>
-       
 
     </ContentPage.Content>
-</ContentPage>
+</pages:PopupPage>

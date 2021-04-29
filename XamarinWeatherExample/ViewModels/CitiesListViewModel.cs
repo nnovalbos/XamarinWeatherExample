@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using Xamarin.Forms;
 using XamarinWeatherExample.Contracts.Listeners;
 using XamarinWeatherExample.Contracts.Services;
@@ -18,6 +16,7 @@ namespace XamarinWeatherExample.ViewModels
         public CitiesListViewModel(INavigationService navigationService) : base(navigationService)
         {
             _cities = new ObservableCollection<CityListItemTemplateViewModel>();
+            AddCommand = new Command(async (obj) => await AddCity(), (obj) =>!IsBusy);
         }
 
         #region Properties
@@ -30,11 +29,23 @@ namespace XamarinWeatherExample.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        public new bool IsBusy
+        {
+            get => base.IsBusy;
+            set
+            {
+                base.IsBusy = value;
+                OnCanExecuteCommad();
+            }
+        }
+
         #endregion
 
-        public ICommand AddCommand => new Command(async() => await AddCity());
+        //  public ICommand AddCommand => new Command(async() => await AddCity());
 
-        
+        public Command AddCommand { get; private set; }
+
 
         #region Public Methods
         public override Task InitializeAsync(object parameter)
@@ -52,6 +63,11 @@ namespace XamarinWeatherExample.ViewModels
         #endregion
 
         #region Private Methods
+        private void OnCanExecuteCommad()
+        {
+            AddCommand.ChangeCanExecute();
+        }
+
         private async Task AddCity()
         {
             await navigationService.NavigateToAsync<AddCityViewModel>(this);

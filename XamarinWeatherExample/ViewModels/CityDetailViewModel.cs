@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using XamarinWeatherExample.Contracts.Services;
 using XamarinWeatherExample.Models;
@@ -13,6 +14,7 @@ namespace XamarinWeatherExample.ViewModels
         public CityDetailViewModel(INavigationService navigationService) : base(navigationService)
         {
             _city = new City();
+            IsBusy = true;
         }
 
         public string Title => _city.CityName;
@@ -29,12 +31,19 @@ namespace XamarinWeatherExample.ViewModels
 
         public override Task InitializeAsync(object parameter)
         {
+            IsBusy = true;
             _city = parameter as City;
+            Draw();
+            IsBusy = false;
+            return base.InitializeAsync(parameter);
+        }
+
+        private void Draw()
+        {
             OnPropertyChanged(nameof(Title));
             OnPropertyChanged(nameof(Description));
             OnPropertyChanged(nameof(TemperatureValues));
             OnPropertyChanged(nameof(CityWeatherIcon));
-            return base.InitializeAsync(parameter);
         }
     }
 }

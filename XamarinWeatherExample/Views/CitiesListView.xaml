@@ -5,7 +5,6 @@
     Title="GoodWeather"
     xmlns:utility="clr-namespace:XamarinWeatherExample.Common"
     xmlns:templates="clr-namespace:XamarinWeatherExample.Views.Templates"
-    xmlns:vm="clr-namespace:XamarinWeatherExample.ViewModels"
     utility:ViewModelLocator.AutoWireViewModel="True"
     x:Class="XamarinWeatherExample.Views.CitiesListView">
 
@@ -17,7 +16,7 @@
     <ContentPage.Content>
 
           <CollectionView VerticalOptions="FillAndExpand"
-                      SelectionMode="Single"
+                      SelectionMode="None"
                       Margin="0"
                       ItemsSource="{Binding Cities}"
                       HorizontalOptions="FillAndExpand">
@@ -28,15 +27,18 @@
                      </DataTemplate>
               </CollectionView.ItemTemplate>
 
-    
               <CollectionView.EmptyView>
-                        <Label Text="No cities added! :("
+
+                    <Label Text="No cities added! :("
                             TextColor="#00A6FF" 
-                            HorizontalTextAlignment="Center" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
-                    </CollectionView.EmptyView>
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"
+                            HorizontalOptions="CenterAndExpand"
+                            VerticalOptions="CenterAndExpand" />
+
+               </CollectionView.EmptyView>
 
               </CollectionView>
 
-        
     </ContentPage.Content>
 </ContentPage>

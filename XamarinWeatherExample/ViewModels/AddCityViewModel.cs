@@ -38,6 +38,16 @@ namespace XamarinWeatherExample.ViewModels
             }
         }
 
+        public new bool IsBusy
+        {
+            get => base.IsBusy;
+            set
+            {
+                base.IsBusy = value;
+                OnCanExecuteCommad();
+            }
+        }
+
         public ICityAddedListener Listener {get; set;}
 
         public Command AddCommand { get; private set; }
